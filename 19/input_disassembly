@@ -1,0 +1,45 @@
+#ip 3
+00	addi 3 16 3		;	goto init
+
+:start
+01	seti 1 8 1		;	reg[1] = 1
+
+:reset_r4
+02	seti 1 3 4		;	reg[4] = 1
+
+:sum_factors
+03	mulr 1 4 2		;	reg[2] = reg[1] * reg[4]
+04	eqrr 2 5 2		;	if reg[2] == reg[5]:
+05	addr 2 3 3		;		reg[0] += reg[1]
+06	addi 3 1 3		;	reg[4] += 1
+07	addr 1 0 0		;
+08	addi 4 1 4		;
+09	gtrr 4 5 2		;	if reg[4] <= reg[5]:
+10	addr 3 2 3		; 		goto sum_factors
+11	seti 2 6 3		; 	else:
+12	addi 1 1 1		;		reg[1] += 1
+13	gtrr 1 5 2		;		if reg[1] <= reg[5]:
+14	addr 2 3 3		;			goto reset_r4
+15	seti 1 5 3		;		else:
+16	mulr 3 3 3		;			exit()
+
+:init
+17	addi 5 2 5		;	reg[5] += 2				# (0 + 2 = 2)
+18	mulr 5 5 5		;	reg[5] = 2*2*19*11		# =836
+19	mulr 3 5 5		;
+20	muli 5 11 5		;
+21	addi 2 5 2		;	reg[2] = ((reg[2] + 5) * 22) + 21		# =131
+22	mulr 2 3 2		;
+23	addi 2 21 2		;
+24	addr 5 2 5		;	reg[5] += reg[2]						# =967
+25	addr 3 0 3		;	if not p2:
+26	seti 0 4 3		;		goto start
+27	setr 3 1 2		;	reg[2] = ((((27*28) + 29) * 30) * 14) * 32		# =10550400
+28	mulr 2 3 2		;
+29	addr 3 2 2		;
+30	mulr 3 2 2		;
+31	muli 2 14 2		;
+32	mulr 2 3 2		;
+33	addr 5 2 5		;	reg[5] += reg[2]		# =10551367
+34	seti 0 3 0		;	reg[0] = 0
+35	seti 0 6 3		;	goto start
