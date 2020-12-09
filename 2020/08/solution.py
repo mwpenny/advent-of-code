@@ -46,4 +46,4 @@ with open('input', 'r') as f:
 			a = cpu.run()
 			if not cpu.looped:
 				break
-	print('Accumulator after normal execution', a)
+	print('Accumulator after normal execution:', a)
