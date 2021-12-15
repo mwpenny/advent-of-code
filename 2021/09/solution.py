@@ -8,7 +8,7 @@ def adj_points(heightmap, x, y):
 	for x_ofs, y_ofs in ADJ_OFFSETS:
 		adj_x = x + x_ofs
 		adj_y = y + y_ofs
-		if 0 <= adj_x < len(row) and 0 <= adj_y < len(heightmap):
+		if 0 <= adj_x < len(heightmap[0]) and 0 <= adj_y < len(heightmap):
 			yield adj_x, adj_y
 
 
